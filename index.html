@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>navigation.ai | Intelligent Motion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.5);
+            --bg-dark: #0a0a0c;
+        }
+
+        * {
+            cursor: default;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Navigation Styles */
+        nav {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(0px);
+            border-bottom: 1px solid transparent;
+        }
+
+        nav.scrolled {
+            background: rgba(10, 10, 12, 0.8);
+            backdrop-filter: blur(12px);
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Section Styling */
+        section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 20px;
+        }
+
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 50%, #1e293b 0%, #0a0a0c 100%);
+        }
+
+        /* Interactive Elements */
+        .btn-primary {
+            background: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 35px var(--accent-glow);
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+        }
+
+        .card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            transform: translateY(-10px);
+            border-color: var(--accent);
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            width: 2px;
+            height: 50px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+            animation: scrolldown 2s infinite;
+        }
+
+        @keyframes scrolldown {
+            0% { transform: scaleY(0); transform-origin: top; }
+            50% { transform: scaleY(1); transform-origin: top; }
+            51% { transform: scaleY(1); transform-origin: bottom; }
+            100% { transform: scaleY(0); transform-origin: bottom; }
+        }
+
+        /* Custom selection color */
+        ::selection {
+            background: var(--accent);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="mainNav" class="fixed top-0 left-0 w-full z-50 px-6 py-6 flex justify-between items-center">
+        <div class="logo text-2xl font-bold tracking-tighter">
+            navigation<span class="text-blue-500">.ai</span>
+        </div>
+
+        <div class="hidden md:flex space-x-10 items-center">
+            <a href="#home" class="nav-link text-sm font-medium uppercase tracking-widest hover:text-blue-400">Home</a>
+            <a href="#about" class="nav-link text-sm font-medium uppercase tracking-widest hover:text-blue-400">About</a>
+            <a href="#services" class="nav-link text-sm font-medium uppercase tracking-widest hover:text-blue-400">Services</a>
+            <a href="#contact" class="nav-link text-sm font-medium uppercase tracking-widest hover:text-blue-400 border border-blue-500 px-4 py-2 rounded-full transition-all hover:bg-blue-500 hover:text-white">Contact</a>
+        </div>
+
+        <!-- Mobile Toggle (Simplified for this demo) -->
+        <div class="md:hidden flex flex-col space-y-1.5 cursor-pointer p-2" onclick="toggleMobileMenu()">
+            <div class="w-6 h-0.5 bg-white"></div>
+            <div class="w-6 h-0.5 bg-white"></div>
+            <div class="w-6 h-0.5 bg-white"></div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient relative overflow-hidden">
+        <div class="container mx-auto text-center px-4 relative z-10">
+            <h1 class="text-6xl md:text-8xl font-extrabold mb-6 animate-pulse opacity-90">
+                Directing the <span class="text-blue-500">Future</span>
+            </h1>
+            <p class="text-gray-400 text-xl md:text-2xl max-w-2xl mx-auto mb-10 leading-relaxed">
+                Experience the next generation of digital wayfinding and intelligent UI interactions. Built for speed, styled for impact.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6">
+                <a href="#about" class="btn-primary px-10 py-4 rounded-full font-bold text-lg cursor-pointer">Explore About</a>
+                <a href="#services" class="bg-white/5 hover:bg-white/10 px-10 py-4 rounded-full font-bold text-lg border border-white/10 transition-all cursor-pointer">Learn More</a>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2">
+            <div class="scroll-indicator"></div>
+        </div>
+
+        <!-- Background blobs for "human" feel -->
+        <div class="absolute -top-20 -left-20 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-20 -right-20 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="bg-[#0f1115]">
+        <div class="container mx-auto px-4 grid md:grid-cols-2 gap-16 items-center">
+            <div class="relative group">
+                <div class="absolute inset-0 bg-blue-500 rounded-2xl blur opacity-20 group-hover:opacity-40 transition-opacity"></div>
+                <div class="relative bg-black p-8 rounded-2xl border border-white/10">
+                    <h3 class="text-2xl font-bold mb-4">The .ai Philosophy</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        We believe that navigation shouldn't just be functional—it should be an experience. Our algorithms predict user intent to provide seamless transitions across complex digital landscapes.
+                    </p>
+                    <div class="mt-8 space-y-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center text-blue-500">✔</div>
+                            <span>Predictive Interface Logic</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center text-blue-500">✔</div>
+                            <span>Zero Latency Interactions</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-8">Redefining the <br><span class="text-blue-500">User Journey</span></h2>
+                <p class="text-gray-400 text-lg mb-8">
+                    Navigation.ai isn't just a domain name; it's a standard. We specialize in building paths that users take for granted because they are so intuitive.
+                </p>
+                <button class="text-blue-500 font-bold flex items-center space-x-2 group">
+                    <span>Our Methodology</span>
+                    <span class="group-hover:translate-x-2 transition-transform">→</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl font-bold mb-4">Our Core Capabilities</h2>
+                <div class="w-20 h-1 bg-blue-500 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="card p-10 rounded-3xl">
+                    <div class="text-4xl mb-6">🛰️</div>
+                    <h3 class="text-xl font-bold mb-4">Dynamic Routing</h3>
+                    <p class="text-gray-500">High-performance data routing for enterprise-scale applications requiring millisecond precision.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="card p-10 rounded-3xl border-blue-500/30 bg-blue-500/5">
+                    <div class="text-4xl mb-6">🧠</div>
+                    <h3 class="text-xl font-bold mb-4">Context Awareness</h3>
+                    <p class="text-gray-500">UIs that change based on user behavior, time of day, and environmental triggers.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="card p-10 rounded-3xl">
+                    <div class="text-4xl mb-6">⚡</div>
+                    <h3 class="text-xl font-bold mb-4">Fluid Motion</h3>
+                    <p class="text-gray-500">Bespoke animation libraries designed to reduce cognitive load while navigating complex data.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-gradient-to-t from-blue-900/20 to-transparent">
+        <div class="container mx-auto px-4 max-w-4xl text-center">
+            <h2 class="text-4xl font-bold mb-8">Ready to navigate?</h2>
+            <div class="bg-white/5 p-8 md:p-12 rounded-3xl border border-white/10 backdrop-blur-md">
+                <form onsubmit="event.preventDefault(); alert('Message sent! Our AI will reach out shortly.');" class="grid md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="Full Name" class="bg-black/50 border border-white/10 p-4 rounded-xl focus:border-blue-500 outline-none transition-all" required>
+                    <input type="email" placeholder="Email Address" class="bg-black/50 border border-white/10 p-4 rounded-xl focus:border-blue-500 outline-none transition-all" required>
+                    <textarea placeholder="Tell us about your project" class="bg-black/50 border border-white/10 p-4 rounded-xl focus:border-blue-500 outline-none transition-all md:col-span-2 h-32" required></textarea>
+                    <button type="submit" class="btn-primary md:col-span-2 py-4 rounded-xl font-bold uppercase tracking-widest cursor-pointer">Send Transmission</button>
+                </form>
+            </div>
+            <footer class="mt-20 text-gray-500 text-sm">
+                &copy; 2025 navigation.ai — Built for the Next Frontier
+            </footer>
+        </div>
+    </section>
+
+    <script>
+        // Handle Scroll Interaction for Navigation Bar
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('mainNav');
+            const logo = nav.querySelector('.logo');
+            
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+                // Change style of logo or links on scroll
+                logo.style.transform = 'scale(0.95)';
+            } else {
+                nav.classList.remove('scrolled');
+                logo.style.transform = 'scale(1)';
+            }
+
+            // Update active link based on scroll position
+            updateActiveLink();
+        });
+
+        // Update active link highlighting
+        function updateActiveLink() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = "";
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('text-blue-400');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('text-blue-400');
+                }
+            });
+        }
+
+        // Smooth Scrolling logic (browser handles it via CSS, but this ensures clicking works across browsers)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Mobile Menu Placeholder Logic
+        function toggleMobileMenu() {
+            const banner = document.createElement('div');
+            banner.style.position = 'fixed';
+            banner.style.top = '0';
+            banner.style.left = '0';
+            banner.style.width = '100%';
+            banner.style.height = '100%';
+            banner.style.background = 'rgba(0,0,0,0.95)';
+            banner.style.zIndex = '1000';
+            banner.style.display = 'flex';
+            banner.style.flexDirection = 'column';
+            banner.style.alignItems = 'center';
+            banner.style.justifyContent = 'center';
+            banner.innerHTML = `
+                <div class="text-3xl font-bold mb-10">navigation.ai</div>
+                <a href="#home" class="text-2xl mb-6 hover:text-blue-500" onclick="this.parentElement.remove()">Home</a>
+                <a href="#about" class="text-2xl mb-6 hover:text-blue-500" onclick="this.parentElement.remove()">About</a>
+                <a href="#services" class="text-2xl mb-6 hover:text-blue-500" onclick="this.parentElement.remove()">Services</a>
+                <a href="#contact" class="text-2xl mb-6 hover:text-blue-500" onclick="this.parentElement.remove()">Contact</a>
+                <div class="mt-10 cursor-pointer text-gray-400" onclick="this.parentElement.remove()">Close Menu</div>
+            `;
+            document.body.appendChild(banner);
+        }
+    </script>
+</body>
+</html>
